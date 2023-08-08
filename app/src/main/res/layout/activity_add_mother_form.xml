@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addMotherForm">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/mainDark"
+            android:padding="10dp"
+            android:gravity="center"
+            >
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="BABYCARE (Midwives)"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnHome"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/mainDark"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/home"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="61dp" />
+
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="20dp"
+                    android:background="@color/mainDark"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/back"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="61dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create new mother account"
+            android:textAlignment="center"
+            android:textSize="15dp"
+            tools:layout_editor_absoluteX="9dp"
+            android:layout_marginVertical="10dp"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:layout_editor_absoluteX="10dp"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother's First Name" />
+
+            <EditText
+                android:id="@+id/txtMFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Mother's First Name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother's last name" />
+
+            <EditText
+                android:id="@+id/txtMLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Mother's Last Name"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother's Email address" />
+
+            <EditText
+                android:id="@+id/txtMEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Mother's email address"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mother's Phone Number" />
+
+            <EditText
+                android:id="@+id/txtPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Etner the mother's phone number"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password" />
+
+            <EditText
+                android:id="@+id/txtMPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Enter a password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Confirm password" />
+
+            <EditText
+                android:id="@+id/txtMConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:hint="Confirm password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of birth" />
+
+            <EditText
+                android:id="@+id/txtMDob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the date of birth"
+                android:inputType="date" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address" />
+
+            <EditText
+                android:id="@+id/txtMAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Enter the mother's address"
+                android:inputType="textPersonName" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddMother"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/addbutton"
+                android:text="Add Mother"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

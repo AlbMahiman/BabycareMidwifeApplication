@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BabyCourses">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@color/mainDark"
+            android:padding="10dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="BABYCARE (Midwives)"
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnHome"
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:background="@color/mainDark"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/home"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="61dp" />
+
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="20dp"
+                    android:background="@color/mainDark"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/back"
+                    tools:layout_editor_absoluteX="10dp"
+                    tools:layout_editor_absoluteY="61dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            >
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Baby's Injection Courses"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddCourse"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/addbutton"
+                android:text="+ ADD"
+                android:textColor="@color/white"
+                android:paddingHorizontal="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="10dp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/courseList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        ]
+
+    </LinearLayout>
+
+</ScrollView>

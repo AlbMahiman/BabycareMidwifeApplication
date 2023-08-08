@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "488176076945",
+    "firebase_url": "https://babycare-51f66-default-rtdb.firebaseio.com",
+    "project_id": "babycare-51f66",
+    "storage_bucket": "babycare-51f66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:488176076945:android:d716044e63766a96401730",
+        "android_client_info": {
+          "package_name": "com.example.midwivesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "488176076945-l1i5mg0gmgqdhl0h63pvkioa1ctco8as.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaAQMC0JGz0Fc9QZcOJSd8DdiVZ4RSUHg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "488176076945-l1i5mg0gmgqdhl0h63pvkioa1ctco8as.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

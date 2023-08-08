@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mom" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/robotoblack"
+            android:textColor="@color/black"
+            android:text="BABY CARE" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/robotoregular"
+            android:text="Midwives Application" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        android:paddingHorizontal="40dp"
+        android:paddingVertical="40dp"
+        android:background="@color/mainDark">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:textSize="25dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/robotomedium"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginVertical="5dp"/>
+
+        <EditText
+            android:id="@+id/usernameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter your username"
+            android:textColorHint="@color/gray"
+            android:inputType="textPersonName"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"
+            android:background="@drawable/white_input"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="8dp"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:fontFamily="@font/robotoregular"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:layout_marginVertical="5dp"
+            />
+
+        <EditText
+            android:id="@+id/passwordTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter your password"
+            android:textColorHint="@color/gray"
+            android:inputType="textPassword"
+            android:fontFamily="@font/robotoregular"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/white_input"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="8dp"
+            android:textSize="15dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnLogin"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="Login"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:background="@drawable/loginbtn"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Forgot your password?"
+            android:textAlignment="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/gray"
+            android:textSize="12dp"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

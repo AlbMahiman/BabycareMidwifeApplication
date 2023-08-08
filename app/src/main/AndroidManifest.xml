@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Midwivesapp">
+        <activity
+            android:name=".Chart"
+            android:exported="false" />
+        <activity
+            android:name=".QrScanner"
+            android:exported="false" />
+        <activity
+            android:name=".MotherNotVerified"
+            android:exported="false" />
+        <activity
+            android:name=".ViewBabyClinic"
+            android:exported="false" />
+        <activity
+            android:name=".AddBabyClinic"
+            android:exported="false" />
+        <activity
+            android:name=".AddBabyCourse"
+            android:exported="false" />
+        <activity
+            android:name=".AddBabyMed"
+            android:exported="false" />
+        <activity
+            android:name=".AddBabyBmi"
+            android:exported="false" />
+        <activity
+            android:name=".BabyClinic"
+            android:exported="false" />
+        <activity
+            android:name=".BabyCourses"
+            android:exported="false" />
+        <activity
+            android:name=".BabyMed"
+            android:exported="false" />
+        <activity
+            android:name=".BabyBmi"
+            android:exported="false" />
+        <activity
+            android:name=".Newnewnew"
+            android:exported="false" />
+        <activity
+            android:name=".BabiesClinicalConservation"
+            android:exported="false" />
+        <activity
+            android:name=".BabiesMedicine"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMotherClinic"
+            android:exported="false" />
+        <activity
+            android:name=".AddMotherClinic"
+            android:exported="false" />
+        <activity
+            android:name=".AddMotherCourse"
+            android:exported="false" />
+        <activity
+            android:name=".AddMotherMed"
+            android:exported="false" />
+        <activity
+            android:name=".AddMotherBmi"
+            android:exported="false" />
+        <activity
+            android:name=".MotherClinic"
+            android:exported="false" />
+        <activity
+            android:name=".MotherCourses"
+            android:exported="false" />
+        <activity
+            android:name=".MotherMed"
+            android:exported="false" />
+        <activity
+            android:name=".MotherBmi"
+            android:exported="false" />
+        <activity
+            android:name=".Chat"
+            android:exported="false" />
+        <activity
+            android:name=".MotherBabyList"
+            android:exported="false" />
+        <activity
+            android:name=".ViewBaby"
+            android:exported="false" />
+        <activity
+            android:name=".AddBaby"
+            android:exported="false" />
+        <activity
+            android:name=".PregnancyList"
+            android:exported="false" />
+        <activity
+            android:name=".ViewPregnancy"
+            android:exported="false" />
+        <activity
+            android:name=".AddPregnancy"
+            android:exported="false" />
+        <activity
+            android:name=".MotherList"
+            android:exported="false" />
+        <activity
+            android:name=".MotherAddComplete"
+            android:exported="false" />
+        <activity
+            android:name=".ViewMother"
+            android:exported="false" />
+        <activity
+            android:name=".motherAdded"
+            android:exported="false" />
+        <activity
+            android:name=".AddMotherConfirmation"
+            android:exported="false" />
+        <activity
+            android:name=".addMotherForm"
+            android:exported="false" />
+        <activity
+            android:name=".Dashboard"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
