@@ -1,9 +1,11 @@
 package com.example.midwivesapp
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.midwivesapp.databinding.ActivityBabyMedBinding
@@ -22,6 +24,7 @@ class BabyMed : AppCompatActivity() {
 
     private var babyIndex = ""
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBabyMedBinding.inflate(layoutInflater)

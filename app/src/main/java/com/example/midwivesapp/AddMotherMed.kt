@@ -15,11 +15,13 @@ import com.google.firebase.database.ValueEventListener
 import java.time.LocalDate
 import java.util.*
 
+@RequiresApi(Build.VERSION_CODES.O)
 class AddMotherMed : AppCompatActivity() {
     private lateinit var binding: ActivityAddMotherMedBinding
     private lateinit var user: FirebaseAuth
 
-    private var counter:Int = 0
+    private var counter: Int = 0
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityAddMotherMedBinding.inflate(layoutInflater)
@@ -28,31 +30,41 @@ class AddMotherMed : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        var pregnancyId = intent.getStringExtra("pregnancyId")
+        // Get the pregnancyId passed from the previous activity.
+        val pregnancyId = intent.getStringExtra("pregnancyId")
 
+        // Set the status text to indicate adding medicine for the mother.
         binding.statusText.text = "Add Medicine for this mother"
 
-        binding.btnConfirm.setOnClickListener{
+        // Set up a click listener for the "Confirm" button to add the medicine.
+        binding.btnConfirm.setOnClickListener {
             addMed(pregnancyId.toString())
         }
 
-        binding.btnBack.setOnClickListener{
-            var intent = Intent(this,MotherMed::class.java).also {
-                it.putExtra("pregnancyId",pregnancyId)
+        // Set up a click listener for the "Back" button to navigate back to the MotherMed activity.
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, MotherMed::class.java).also {
+                it.putExtra("pregnancyId", pregnancyId)
             }
             startActivity(intent)
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun addMed(pregnancyId:String){
-        var medName = binding.med.text.toString()
-        var instructions = binding.instructions.text.toString()
+    private fun addMed(pregnancyId: String) {
+        // Get the medicine name and instructions from the input fields.
+        val medName = binding.med.text.toString()
+        val instructions = binding.instructions.text.toString()
 
         if (medName.isNotEmpty() && instructions.isNotEmpty()) {
-            var createdDate = LocalDate.now().toString()
+            // Get the current date as the medicine creation date.
+            val createdDate = LocalDate.now().toString()
+
+            // Generate a unique UUID for the medicine.
             val uuid = UUID.randomUUID()
-            var med = MotherMedItem(
+
+            // Create a MotherMedItem object.
+            val med = MotherMedItem(
                 pregnancyId,
                 createdDate,
                 medName,
@@ -60,9 +72,12 @@ class AddMotherMed : AppCompatActivity() {
                 uuid.toString(),
                 instructions
             )
+
+            // Add the medicine to the Firebase Realtime Database.
             FirebaseDatabase.getInstance().getReference("MotherMed").child(uuid.toString())
                 .setValue(med).addOnSuccessListener {
-                    var intent = Intent(this, MotherMed::class.java).also {
+                    // After successfully adding the medicine, navigate back to the MotherMed activity.
+                    val intent = Intent(this, MotherMed::class.java).also {
                         it.putExtra("pregnancyId", pregnancyId)
                     }
                     startActivity(intent)

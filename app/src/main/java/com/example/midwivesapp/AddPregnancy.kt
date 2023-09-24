@@ -13,9 +13,11 @@ import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.util.*
 
+@RequiresApi(Build.VERSION_CODES.O)
 class AddPregnancy : AppCompatActivity() {
     private lateinit var binding: ActivityAddPregnancyBinding
     private lateinit var user: FirebaseAuth
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,56 +25,65 @@ class AddPregnancy : AppCompatActivity() {
         setContentView(binding.root)
         user = FirebaseAuth.getInstance()
 
+        // Get the motherId and motherName passed from the previous activity.
         val motherId = intent.getStringExtra("motherId")
         val motherName = intent.getStringExtra("motherName")
 
+        // Set the status text to indicate adding a pregnancy for the mother.
         binding.statusText.text = "Add pregnancy for $motherName"
 
+        // Read data to check if the mother is eligible for adding a pregnancy.
         readData(motherId.toString())
 
-        binding.btnConfirm.setOnClickListener{
+        // Set up a click listener for the "Confirm" button to add the pregnancy.
+        binding.btnConfirm.setOnClickListener {
             addPregnancy(motherId.toString())
         }
-        binding.btnBack.setOnClickListener{
-            var intent = Intent(this,ViewMother::class.java).also {
-                it.putExtra("motherId",motherId)
+
+        // Set up a click listener for the "Back" button to navigate back to the ViewMother activity.
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, ViewMother::class.java).also {
+                it.putExtra("motherId", motherId)
             }
             startActivity(intent)
         }
-
     }
 
-    private fun readData(motherId: String){
+    // Function to check if the mother is eligible for adding a pregnancy.
+    private fun readData(motherId: String) {
         FirebaseDatabase.getInstance().getReference("Mother").child(motherId).get().addOnSuccessListener { it ->
-            if(it.exists()){
-                var status = it.child("status").value.toString()
-                if(status == "mother"){
+            if (it.exists()) {
+                val status = it.child("status").value.toString()
+                if (status == "mother") {
+                    // The mother is eligible for adding a pregnancy.
                     binding.btnConfirm.visibility = View.VISIBLE
-                }else{
+                } else {
+                    // The mother is already pregnant.
                     binding.btnConfirm.visibility = View.GONE
                     Toast.makeText(this, "FAILED!.. mother status: pregnant!", Toast.LENGTH_SHORT).show()
-                    var intent = Intent(this,ViewMother::class.java).also {
-                        it.putExtra("motherId",motherId)
+                    val intent = Intent(this, ViewMother::class.java).also {
+                        it.putExtra("motherId", motherId)
                     }
                     startActivity(intent)
                 }
-            }else{
-                //mother not found
+            } else {
+                // Mother not found.
             }
         }
     }
 
+    // Function to add a new pregnancy.
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun addPregnancy(motherId:String){
-        var pregnancyId = UUID.randomUUID().toString()
-        var createdDate = LocalDate.now().toString()
+    private fun addPregnancy(motherId: String) {
+        val pregnancyId = UUID.randomUUID().toString()
+        val createdDate = LocalDate.now().toString()
 
-        var status = "1"
+        val status = "1"
 
-        var pregnancy = Pregnancy(pregnancyId,motherId,createdDate,status)
+        val pregnancy = Pregnancy(pregnancyId, motherId, createdDate, status)
         FirebaseDatabase.getInstance().getReference("Pregnancy").child(pregnancyId).setValue(pregnancy).addOnSuccessListener {
-            var intent = Intent(this,ViewPregnancy::class.java).also {
-                it.putExtra("pregnancyId",pregnancyId)
+            val intent = Intent(this, ViewPregnancy::class.java).also {
+                it.putExtra("pregnancyId", pregnancyId)
             }
             startActivity(intent)
             finish()

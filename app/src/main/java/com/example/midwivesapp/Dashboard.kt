@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.io.IOException
 
+// Dashboard activity
 class Dashboard : AppCompatActivity() {
 
     private lateinit var binding: ActivityDashboardBinding
@@ -31,50 +32,49 @@ class Dashboard : AppCompatActivity() {
         setContentView(binding.root)
         user = FirebaseAuth.getInstance()
 
+        // Read user data
         readData()
 
-        binding.btnLogout.setOnClickListener{
+        // Logout button click listener
+        binding.btnLogout.setOnClickListener {
             signOutUser()
         }
-        binding.btnCreateMotherAccount.setOnClickListener{
-            startActivity(Intent(this,addMotherForm::class.java))
-        }
-        binding.qrScanner.setOnClickListener{
-            startActivity(Intent(this,QrScanner::class.java))
-        }
-        binding.viewMotherList.setOnClickListener{
-            startActivity(Intent(this,MotherList::class.java))
+
+        // Create Mother Account button click listener
+        binding.btnCreateMotherAccount.setOnClickListener {
+            startActivity(Intent(this, addMotherForm::class.java))
         }
 
+        // QR Scanner button click listener
+        binding.qrScanner.setOnClickListener {
+            startActivity(Intent(this, QrScanner::class.java))
+        }
 
+        // View Mother List button click listener
+        binding.viewMotherList.setOnClickListener {
+            startActivity(Intent(this, MotherList::class.java))
+        }
     }
 
-    private fun readData(){
-        binding.txtWelcome.text = user.uid.toString()
+    // Read user data and display welcome message
+    private fun readData() {
+        binding.txtWelcome.text = user.uid.toString() // Default text before retrieving user data
         FirebaseDatabase.getInstance().getReference("User").child(user.uid.toString()).get().addOnSuccessListener {
-            if(it.exists()){
+            if (it.exists()) {
+                // Retrieve user's first name and last name
                 val firstName = it.child("firstName").value
                 val lastName = it.child("lastName").value
 
+                // Display a welcome message with the user's name
                 binding.txtWelcome.text = user.uid.toString() /*"Welcome! $firstName $lastName"*/
             }
         }
     }
 
-
-    private fun signOutUser(){
-        /*
-        if(ConnectionCheck.checkForInternet(this)){
-            user.signOut()
-            startActivity(Intent(this,MainActivity::class.java))
-            finish()
-        }
-        else{
-            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show()
-        }*/
-
+    // Sign out the user and navigate to the login screen
+    private fun signOutUser() {
         user.signOut()
-        startActivity(Intent(this,Login::class.java))
+        startActivity(Intent(this, Login::class.java))
         finish()
     }
 }

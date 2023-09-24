@@ -12,10 +12,12 @@ import com.google.firebase.database.FirebaseDatabase
 import java.time.LocalDate
 import java.util.*
 
+// This is the AddBabyClinic activity, which allows adding clinic information for a baby.
+
 class AddBabyClinic : AppCompatActivity() {
 
-    private lateinit var binding:ActivityAddBabyClinicBinding
-    private lateinit var user:FirebaseAuth
+    private lateinit var binding: ActivityAddBabyClinicBinding
+    private lateinit var user: FirebaseAuth
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,31 +26,39 @@ class AddBabyClinic : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var babyId = intent.getStringExtra("babyId")
+        // Get the babyId passed from the previous activity.
+        val babyId = intent.getStringExtra("babyId")
 
-        binding.btnConfirm.setOnClickListener{
+        // Set up a click listener for the confirm button.
+        binding.btnConfirm.setOnClickListener {
             addClinic(babyId.toString())
         }
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun addClinic(babyId:String){
-        var purpose = binding.purpose.text.toString()
-        var clinicDate = binding.clinicDate.text.toString()
-        if(purpose.isNotEmpty() && clinicDate.isNotEmpty()){
-            var createdDate = LocalDate.now().toString()
-            var status = "pending"
-            val uuid = UUID.randomUUID()
-            var clinicItem = BabyClinicItem(uuid.toString(),babyId,createdDate,purpose,user.uid.toString(),clinicDate,status)
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun addClinic(babyId: String) {
+        // Retrieve purpose and clinic date from input fields.
+        val purpose = binding.purpose.text.toString()
+        val clinicDate = binding.clinicDate.text.toString()
+
+        if (purpose.isNotEmpty() && clinicDate.isNotEmpty()) {
+            // Get the current date and set the status as "pending".
+            val createdDate = LocalDate.now().toString()
+            val status = "pending"
+            val uuid = UUID.randomUUID()
+
+            // Create a BabyClinicItem and add it to the Firebase Realtime Database.
+            val clinicItem = BabyClinicItem(uuid.toString(), babyId, createdDate, purpose, user.uid.toString(), clinicDate, status)
             FirebaseDatabase.getInstance().getReference("BabyClinic").child(uuid.toString())
                 .setValue(clinicItem).addOnSuccessListener {
-                    var intent = Intent(this, BabyClinic::class.java).also {
+                    // After successful addition, navigate to the BabyClinic activity.
+                    val intent = Intent(this, BabyClinic::class.java).also {
                         it.putExtra("babyId", babyId)
                     }
                     startActivity(intent)
                     finish()
                 }
-        }else{
+        } else {
             Toast.makeText(this, "Fill all the inputs to add a clinic", Toast.LENGTH_SHORT).show()
         }
     }

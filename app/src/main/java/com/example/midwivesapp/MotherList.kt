@@ -30,47 +30,56 @@ class MotherList : AppCompatActivity() {
         motherRecyclerView.layoutManager = LinearLayoutManager(this)
         motherRecyclerView.setHasFixedSize(true)
         motherArrayList = arrayListOf<MotherItem>()
+
+        // Read and display the list of mothers associated with the current nurse
         readData(user.uid.toString())
+
+        // Add click listeners to navigation buttons
         binding.btnHome.setOnClickListener{
-            val intent = Intent(this,Dashboard::class.java)
+            val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener{
             finish()
         }
-
     }
 
     private fun readData(userid:String){
+        // Read mother data from the Firebase database
         FirebaseDatabase.getInstance().getReference("Mother").addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(fineSnapshot in snapshot.children){
                         if(fineSnapshot.child("nurseId").value.toString() == user.uid.toString()){
-                            val motherItem =  fineSnapshot.getValue(MotherItem::class.java)
+                            val motherItem = fineSnapshot.getValue(MotherItem::class.java)
                             motherArrayList.add(motherItem!!)
                         }
                     }
+                    // Populate the RecyclerView with mother data using the adapter
                     motherRecyclerView.adapter = MotherAdapter(motherArrayList,this@MotherList)
                 }
             }
-            override fun onCancelled(error: DatabaseError) {
 
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database read error (if needed)
             }
         })
     }
 
+    // Function to handle item click events in the RecyclerView
     fun onItemClick(position: Int) {
         var currentMother = motherArrayList[position]
         if(currentMother.accountStatus == "pending"){
-            var intent = Intent(this,MotherNotVerified::class.java).also {
+            // If the mother's account status is pending, navigate to the MotherNotVerified activity
+            var intent = Intent(this, MotherNotVerified::class.java).also {
                 it.putExtra("motherId",currentMother.motherId)
             }
             startActivity(intent)
         }else if(currentMother.accountStatus == "verified"){
-            var intent = Intent(this,ViewMother::class.java).also {
+            // If the mother's account status is verified, navigate to the ViewMother activity
+            var intent = Intent(this, ViewMother::class.java).also {
                 it.putExtra("motherId",currentMother.motherId)
             }
             startActivity(intent)

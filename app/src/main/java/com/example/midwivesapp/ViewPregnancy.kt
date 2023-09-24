@@ -13,12 +13,18 @@ class ViewPregnancy : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize the binding
         binding = ActivityViewPregnancyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize Firebase authentication
         user = FirebaseAuth.getInstance()
 
+        // Get the pregnancyId from the intent
         val pregnancyId = intent.getStringExtra("pregnancyId")
 
+        // Handle BMI button click
         binding.bmi.setOnClickListener{
             var intent = Intent(this,MotherBmi::class.java).also {
                 it.putExtra("pregnancyId",pregnancyId)
@@ -26,6 +32,7 @@ class ViewPregnancy : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Handle Medical button click
         binding.med.setOnClickListener{
             var intent = Intent(this,MotherMed::class.java).also {
                 it.putExtra("pregnancyId",pregnancyId)
@@ -33,6 +40,7 @@ class ViewPregnancy : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Handle Courses button click
         binding.courses.setOnClickListener{
             var intent = Intent(this,MotherCourses::class.java).also {
                 it.putExtra("pregnancyId",pregnancyId)
@@ -40,20 +48,24 @@ class ViewPregnancy : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Handle Clinic button click
         binding.clinic.setOnClickListener{
             var intent = Intent(this,MotherClinic::class.java).also {
                 it.putExtra("pregnancyId",pregnancyId)
             }
             startActivity(intent)
         }
+
+        // Handle Home button click
         binding.btnHome.setOnClickListener{
             val intent = Intent(this,Dashboard::class.java)
             startActivity(intent)
             finish()
         }
+
+        // Handle Back button click
         binding.back.setOnClickListener{
             finish()
         }
-
     }
 }

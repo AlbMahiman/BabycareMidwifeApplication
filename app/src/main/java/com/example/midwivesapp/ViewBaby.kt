@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class ViewBaby : AppCompatActivity() {
-    private lateinit var binding:ActivityViewBabyBinding
+    private lateinit var binding: ActivityViewBabyBinding
     private lateinit var user: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,52 +17,54 @@ class ViewBaby : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        var babyId = intent.getStringExtra("babyId")
+        // Get the babyId from the intent
+        val babyId = intent.getStringExtra("babyId")
 
+        // Read and display baby data
         readData(babyId.toString())
 
+        // Set up click listeners for different actions
         binding.bmi.setOnClickListener{
-            var intent = Intent(this,BabyBmi::class.java).also {
-                it.putExtra("babyId",babyId)
+            val intent = Intent(this, BabyBmi::class.java).also {
+                it.putExtra("babyId", babyId)
             }
             startActivity(intent)
         }
         binding.med.setOnClickListener{
-            var intent = Intent(this,BabyMed::class.java).also {
-                it.putExtra("babyId",babyId)
+            val intent = Intent(this, BabyMed::class.java).also {
+                it.putExtra("babyId", babyId)
             }
             startActivity(intent)
         }
         binding.courses.setOnClickListener{
-            var intent = Intent(this,BabyCourses::class.java).also {
-                it.putExtra("babyId",babyId)
+            val intent = Intent(this, BabyCourses::class.java).also {
+                it.putExtra("babyId", babyId)
             }
             startActivity(intent)
         }
         binding.clinic.setOnClickListener{
-            var intent = Intent(this,BabyClinic::class.java).also {
-                it.putExtra("babyId",babyId)
+            val intent = Intent(this, BabyClinic::class.java).also {
+                it.putExtra("babyId", babyId)
             }
             startActivity(intent)
         }
         binding.btnHome.setOnClickListener{
-            val intent = Intent(this,Dashboard::class.java)
+            val intent = Intent(this, Dashboard::class.java)
             startActivity(intent)
             finish()
         }
         binding.back.setOnClickListener{
             finish()
         }
-
-
     }
 
+    // Function to read and display baby data
     private fun readData(babyId:String){
         FirebaseDatabase.getInstance().getReference("Baby").child("$babyId/fullName").get().addOnSuccessListener {
             if(it.exists()){
+                // Display the baby's full name in the welcome text
                 binding.txtWelcome.text = "${it.value} (Baby profile)"
             }
         }
     }
-
 }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.midwivesapp.databinding.ActivityAddPregnancyBinding
 import com.example.midwivesapp.databinding.ActivityPregnancyListBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -32,6 +31,8 @@ class PregnancyList : AppCompatActivity() {
         pregnancyRecyclerView.layoutManager = LinearLayoutManager(this)
         pregnancyRecyclerView.setHasFixedSize(true)
         pregnancyArrayList = arrayListOf<PregnancyItem>()
+
+        // Read pregnancy data for the specified mother
         readData(motherId.toString())
 
         binding.btnHome.setOnClickListener{
@@ -42,7 +43,6 @@ class PregnancyList : AppCompatActivity() {
         binding.back.setOnClickListener{
             finish()
         }
-
     }
 
     private fun readData(motherId:String){
@@ -51,21 +51,24 @@ class PregnancyList : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(fineSnapshot in snapshot.children){
+                        // Check if the pregnancy belongs to the specified mother
                         if(fineSnapshot.child("motherId").value.toString() == motherId){
                             val pregnancyItem =  fineSnapshot.getValue(PregnancyItem::class.java)
                             pregnancyArrayList.add(pregnancyItem!!)
                         }
                     }
+                    // Set the adapter for the RecyclerView
                     pregnancyRecyclerView.adapter = PregnancyAdapter(pregnancyArrayList,this@PregnancyList)
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-
+                // Handle onCancelled event
             }
         })
     }
 
     fun onItemClick(position: Int) {
+        // Handle item click event
         var currentPregnancy = pregnancyArrayList[position]
         var intent = Intent(this,ViewPregnancy::class.java).also {
             it.putExtra("pregnancyId",currentPregnancy.pregnancyId)
